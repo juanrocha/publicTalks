@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <title></title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="181117_CascadingEffects_files/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+
+<link rel="stylesheet" href="181117_CascadingEffects_files/reveal.js-3.3.0.1/css/theme/black.css" id="theme">
+
+<style type="text/css">
+.reveal section img {
+  background: rgba(255, 255, 255, 0.85);
+}
+</style>
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+    <link rel="stylesheet" href="custom_jcr.css"/>
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+    <link href="181117_CascadingEffects_files/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
+    <script src="181117_CascadingEffects_files/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
+    <script src="181117_CascadingEffects_files/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="cascading-effects-of-regime-shifts-within-and-across-scales" class="slide level2" data-background="img/earth_night.jpg">
+<h2>Cascading effects of regime shifts within and across scales</h2>
+<p><br> <br> <small><a href="http://www.juanrocha.se">Juan C. Rocha</a>, Garry Peterson, Örjan Bodin &amp; Simon Levin</small></p>
+<p><small>Bolin Center for Climate Reseach | Stockholm Resilience Centre | Stockholm University </small></p>
+<div id="midcenter" style="margin-left:0px; margin-top:200px;">
+<p><img src="img/logo_beijerkva2.png" style="background-color:transparent; border:0px; box-shadow:none; height="60"; width="240""></img></p>
+</div>
+<div id="midcenter" style="margin-left:-240px; margin-top:195px;">
+<p><img src="img/SRC_logo.png" style="background-color:transparent; border:0px; box-shadow:none; height="60"; width="240"></img></p>
+</div>
+<aside class="notes">
+<p>Regime shifts are large, abrupt and persistence critical transitions in the function and structure of ecosystems</p>
+</aside>
+</section>
+<section id="how-regime-shifts-will-interact" class="slide level2" data-background-image="img/ParaguayChaco_Clearings_for_cattle_grazing.jpg" data-background-transition="slide">
+<h2>How regime shifts will interact?</h2>
+<p>
+Whether the occurrence of one will increase the likelihood of another, or simply correlate at distant places
+</p>
+</section>
+<section id="how-regime-shifts-will-interact-1" class="slide level2" data-background-image="img/reef3070.jpg" data-background-transition="slide">
+<h2>How regime shifts will interact?</h2>
+<p>
+Whether the occurrence of one will increase the likelihood of another, or simply correlate at distant places
+</p>
+</section>
+<section id="data-method" class="slide level2" data-background="#ffffff">
+<h2>Data &amp; method</h2>
+<div id="sidebar">
+<td valign="bottom">
+<ul>
+<li class="fragment"><a href="http://www.regimeshifts.org" data-preview-link>Regime shifts database</a>:</li>
+<li class="fragment">&gt;30 generic regime shifts</li>
+<li class="fragment">&gt;300 case studies (&gt;1000 papers reviewed)</li>
+<li class="fragment">Impact <strong>ecosystem services</strong>.</li>
+<li class="fragment">Evidence of <strong>feedbacks</strong>.</li>
+<li class="fragment"><strong>Persists</strong> time frame relevant for society. <br>
+<p align="right">
+<small><a href="https://www.ecologyandsociety.org/vol23/iss3/art9/">Biggs, et al. 2018. Ecology &amp; Society</a></small>
+</p></li>
+</ul>
+</td>
+</div>
+<div id="content">
+<p><img src="img/RSDB.png" alt="RSDB" /></p>
+<!-- <img src= "img/RSDB.png" align = "center" height="100%", width = "100%"> -->
+<!-- <iframe src="http://www.regimeshifts.org/" height = 1200 width = 1500 scroll = "true"></iframe> -->
+</div>
+</section>
+<section id="section" class="slide level2" data-background="#ffffff">
+<h2></h2>
+<p><img src="img/rsdb_map.png" alt="rsdb" /></p>
+</section>
+<section id="section-1" class="slide level2" data-background="#ffffff">
+<h2></h2>
+<p><img src="img/Cascading_FigS1_CLDs.png" alt="clds" /></p>
+</section>
+<section id="hypotheses" class="slide level2" data-background="#ffffff">
+<h2>Hypotheses</h2>
+<div id="sidebar">
+<td valign="bottom">
+<ul>
+<li><p><small><font color = "#ff0000">Drivers sharing</font> is more context-specific; in this case, regime shifts occurring in similar ecosystem types or land uses will be subject to relatively similar sets of drivers</small></p></li>
+<li><p><small> <font color = "#ff0000">Domino effects</font> will be mostly dominated by connections from regime shifts that occur at larger spatial scales with slower temporal dynamics to regime shifts that operate at smaller spatial scales with faster temporal dynamics</small></p></li>
+<li><p><small><font color = "#ff0000">Hidden feedbacks</font> will occur when scales match (both in space and time), because for a new feedback to emerge they need to be somewhat aligned in the scale at which the process operate</small></p></li>
+</ul>
+</td>
+</div>
+<div id="content">
+<p><img src="img/Cascading_Fig1.png" alt="schema" /></p>
+</div>
+<aside class="notes">
+<p>Domino effects occur when the feedback process of one regime shift affect the drivers of another Hidden feedbacks rise when two regime shifts combined generate a new (not previously identified) feedback Drivers sharing is likely to increase correlation in time or space but not necessarily interdependence</p>
+</aside>
+</section>
+<section id="cascading-effects" class="slide level2" data-background="#ffffff">
+<h2>Cascading effects</h2>
+<p><img src= "img/Cascading_FigSummary.png" align = "center" height="75%", width = "75%"></p>
+<p>~45% of the regime shift couplings analyzed present structural dependencies in the form of one-way interactions for the domino effect or two-way interactions for hidden feedbacks</p>
+<aside class="notes">
+<p>19% none</p>
+</aside>
+</section>
+<section id="driver-sharing" class="slide level2" data-background="#ffffff">
+<h2>Driver sharing</h2>
+<p><img src= "img/Cascading_Fig2_AB.png" align = "center" height="75%", width = "75%"></p>
+<p align="left">
+Aquatic regime shifts tend to have and share more drivers. The most co-occurring drivers are related to food production, climate change and urbanisation. 36% of pair-wise combinations are solely coupled by sharing drivers
+</p>
+<p align="right">
+<small><a href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0134639">Rocha et al. 2015. PlosOne</a></small>
+</p>
+<aside class="notes">
+<p>the sharing of drivers is proposed as a potential mechanism that can correlate regime shifts in space and time, but not necessarily make them interdependent. The highest driver co-occurrence was found between regime shifts in kelps, marine eutrophication, and the collapse of fisheries</p>
+</aside>
+</section>
+<section id="domino-effects" class="slide level2" data-background="#ffffff">
+<h2>Domino effects</h2>
+<p><img src= "img/Cascading_Fig2_CD.png" align = "center" height="75%", width = "75%"></p>
+<p align="left">
+Evidence of cross-scale interactions for domino effects was only found in time but not in space. The maximum number of pathways found was 4, and the variables that produce most domino effects relate to climate, nutrients and water transport
+</p>
+<aside class="notes">
+<p>~4% of pair-wise combinations occur solely through domino effects.</p>
+</aside>
+</section>
+<section id="hidden-feedbacks" class="slide level2" data-background="#ffffff">
+<h2>Hidden feedbacks</h2>
+<p><img src= "img/Cascading_Fig2_EF.png" align = "center" height="75%", width = "75%"></p>
+<p align="left">
+Most hidden feedbacks occur in terrestrial and earth systems. Key variables that belong to many of these hidden feedbacks are related to climate, fires, erosion, the functional role of herbivores, agriculture and urbanisation
+</p>
+<aside class="notes">
+<p>Hidden feedbacks were expected to arise when regime shifts dynamics matched scales in space and time: regime shifts occurring on the range of decades to centuries and at national scales are more likely to have hidden feedbacks.</p>
+</aside>
+</section>
+<section id="hypotheses-1" class="slide level2" data-background="#ffffff">
+<h2>Hypotheses</h2>
+<div id="sidebar">
+<td valign="bottom">
+<ul>
+<li><p><small><font color = "#ff0000">Drivers sharing</font> is more context-specific; in this case, regime shifts occurring in similar ecosystem types or land uses will be subject to relatively similar sets of drivers</small></p></li>
+<li><p><small> <font color = "#ff0000">Domino effects</font> will be mostly dominated by connections from regime shifts that occur at larger spatial scales with slower temporal dynamics to regime shifts that operate at smaller spatial scales with faster temporal dynamics</small></p></li>
+<li><p><small><font color = "#ff0000">Hidden feedbacks</font> will occur when scales match (both in space and time), because for a new feedback to emerge they need to be somewhat aligned in the scale at which the process operate</small></p></li>
+</ul>
+</td>
+</div>
+<div id="content">
+<p><img src="img/Cascading_Fig1.png" alt="schema" /></p>
+</div>
+<aside class="notes">
+<p>Domino effects occur when the feedback process of one regime shift affect the drivers of another Hidden feedbacks rise when two regime shifts combined generate a new (not previously identified) feedback Drivers sharing is likely to increase correlation in time or space but not necessarily interdependence</p>
+</aside>
+</section>
+<section id="cross-scale-interactions" class="slide level2" data-background="#ffffff">
+<h2>Cross-scale interactions</h2>
+<div id="sidebar">
+<td valign="bottom">
+<p><img src= "img/Cascading_Fig3_b.png"></p>
+</td>
+</div>
+<div id="content">
+<p><img src= "img/Cascading_Fig3_a.png"></p>
+</div>
+</section>
+<section id="cross-scale-interactions-1" class="slide level2" data-background="#ffffff">
+<h2>Cross-scale interactions</h2>
+<div id="sidebar">
+<td valign="bottom">
+<ul>
+<li><p><small>Regime shifts were more likely to <font color = "red">share drivers</font> when they occurred in similar land uses, but not necessarily under the same ecosystem types.</small></p></li>
+<li><p><small>One-way directional interactions or <font color = "red">domino effects</font> are common but not exclusive to aquatic regime shifts, it highlights the role of water transport and tend to emerge between regime shifts whose dynamics occur at similar temporal scales (but not spatial ones).</small></p></li>
+<li><p><small>Two-way interconnections or <font color = "red">hidden feedbacks</font> are more common in terrestrial systems, they occur often between regime shifts that match spatial scales and impact similar ecosystem processes. </small></p></li>
+</ul>
+</td>
+</div>
+<div id="content">
+<p><img src= "img/Cascading_Fig3_b.png"></p>
+</div>
+</section>
+<section id="conclusions" class="slide level2">
+<h2>Conclusions</h2>
+<ul>
+<li class="fragment">How a regime shift somewhere in the world could affect the occurrence of another regime shift remains an open question and a key frontier of research. <br></li>
+<li class="fragment">Developed network-based method that allow us to explore plausible cascading effects and distinguish potential correlations from true interdependencies. <br></li>
+<li class="fragment">Regime shifts can be interconnected: they should not be study in isolation assuming they are independent systems. Methods and data collection that takes into account the possibility of cascading effects needs to be further developed. <br></li>
+<li class="fragment">The frequency and diversity of regime shifts interconnections suggests that current approaches to environmental management and governance are substantially underestimating the likelihood of cascading effects.</li>
+</ul>
+<aside class="notes">
+<ul>
+<li><small>While our method identifies plausible connections between regime shifts, identifying under what conditions plausible becomes probable requires more detailed understanding on regime shifts mechanisms</small></li>
+</ul>
+</aside>
+</section>
+<section id="gracias-tack" class="slide level2" data-background="img/earth_night.jpg">
+<h2>Gracias | Tack</h2>
+<p>Questions? <br> <br> <br> <small> email: <a href="mailto:juan.rocha@su.se">juan.rocha@su.se</a><br> twitter: <a href="https://twitter.com/juanrocha">@juanrocha</a><br> slides: <a href="juanrocha.se" class="uri">juanrocha.se</a><br> preprint: <a href="https://doi.org/10.1101/364620">doi.org/10.1101/364620</a> </small></p>
+<div id="midcenter" style="margin-left:0px; margin-top:200px;">
+<p><img src="img/logo_beijerkva2.png" style="background-color:transparent; border:0px; box-shadow:none; height="60"; width="240""></img></p>
+</div>
+<div id="midcenter" style="margin-left:-240px; margin-top:195px;">
+<p><img src="img/SRC_logo.png" style="background-color:transparent; border:0px; box-shadow:none; height="60"; width="240"></img></p>
+</div>
+</section>
+<section id="a-worked-example" class="slide level2" data-background="#ffffff">
+<h2>A worked example</h2>
+<p><img src="img/Cascading_FigS4.png" alt="example" /></p>
+</section>
+    </div>
+  </div>
+
+  <script src="181117_CascadingEffects_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="181117_CascadingEffects_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display the page number of the current slide
+        slideNumber: true,
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: true,
+        // Opens links in an iframe preview overlay
+        previewLinks: true,
+        // Transition style
+        transition: 'fade', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'default', // none/fade/slide/convex/concave/zoom
+
+        menu: {
+          custom: false,
+          themes: false,
+          transitions: false
+        },
+
+
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '181117_CascadingEffects_files/reveal.js-3.3.0.1/plugin/notes/notes.js', async: true },
+          { src: '181117_CascadingEffects_files/reveal.js-3.3.0.1/plugin/zoom-js/zoom.js', async: true },
+          { src: '181117_CascadingEffects_files/reveal.js-3.3.0.1/plugin/menu/menu.js', async: true },
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+
+  </body>
+</html>
