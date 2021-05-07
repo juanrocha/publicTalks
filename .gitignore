@@ -3,3 +3,7 @@
 .RData
 .Ruserdata
 *.Rporj
+.DS_Store
+docs/*
+img/*
+img/.DS_Store
